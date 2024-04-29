@@ -18,4 +18,6 @@ mongoose.Promise = global.Promise;
 
 module.exports = {
   Account: require("../model/account"),
+  Product: require("../model/product"),
+  Store: require("../model/store"),
 };

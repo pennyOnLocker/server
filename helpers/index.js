@@ -6,6 +6,7 @@ module.exports = {
       code,
       data,
       success: true,
+      extra
     });
   },
   errorResponse: (
