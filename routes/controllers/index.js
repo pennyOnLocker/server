@@ -13,8 +13,12 @@ router.post("/users/authenticate", createToken);
  * account
  */
 router.post("/account", require("routes/controllers/account/create"));
+router.post("/account/forgrt-password-otp", require("routes/controllers/account/getForgetPasswordOtp"));
+router.post("/account/verify-otp", require("routes/controllers/account/verifyOtp"));
+router.post("/account/reset-password", require("routes/controllers/account/resetPassword"));
 router.get("/account/getMe", require("routes/controllers/account/getMe"));
-
+router.put("/account/change-password", require("routes/controllers/account/changePassword"));
+router.put("/account", require("routes/controllers/account/update"));
 /**
  * product
  */
