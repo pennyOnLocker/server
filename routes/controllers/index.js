@@ -32,5 +32,6 @@ router.put("/product/:id", require("routes/controllers/product/update"));
  */
 router.post("/store", require("routes/controllers/store/create"));
 router.get("/store", require("routes/controllers/store/getList"));
+router.get("/store-token", require("routes/controllers/store/getListToken"));
 
 module.exports = router;
