@@ -57,28 +57,26 @@ module.exports = async (req, res) => {
   }
 
   try {
-    if (_.get(data, "isAvailable")) {
-      storeObj = await Store.findOne({
+    storeObj = await Store.findOne({
+      productId: productId,
+      deletedBy: null,
+      deletedAt: null,
+    }).lean();
+    if (!storeObj && _.get(data, "isAvailable")) {
+      storeObj = await Store.create({
+        ...data,
         productId: productId,
-        deletedBy: null,
-        deletedAt: null,
-      }).lean();
-      if (!storeObj) {
-        storeObj = await Store.create({
+      });
+    } else {
+      storeObj = await Store.findOneAndUpdate(
+        { productId: productId, deletedBy: null, deletedAt: null },
+        {
           ...data,
-          productId: productId,
-        });
-      } else {
-        storeObj = await Store.findOneAndUpdate(
-          { productId: productId, deletedBy: null, deletedAt: null },
-          {
-            ...data,
-          },
-          {
-            new: true,
-          }
-        ).lean();
-      }
+        },
+        {
+          new: true,
+        }
+      ).lean();
     }
   } catch (e) {
     console.log(e);
