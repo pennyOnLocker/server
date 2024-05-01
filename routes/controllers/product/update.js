@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     return errorResponse(req, res, "no token", 500, e);
   }
 
-  const productId = _.get(req.params, "_id", null);
+  const productId = _.get(req.params, "id", null);
 
   let resultObj = null;
   let storeObj = null;
@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
   try {
     const where = {
       accountId: id,
-      id: productId,
+      _id: productId,
       deletedAt: null,
       deletedBy: null,
     };
