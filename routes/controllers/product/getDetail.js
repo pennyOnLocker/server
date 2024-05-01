@@ -4,6 +4,7 @@ const { successResponse, errorResponse } = require("../../../helpers");
 const Product = db.Product;
 const auth = require("../../middlewares/auth");
 const moment = require("moment");
+var ObjectId = require('mongodb').ObjectId;
 
 /**
  * get product detail
@@ -21,15 +22,14 @@ module.exports = async (req, res) => {
     return errorResponse(req, res, "no token", 500, e);
   }
 
-  const productId = _.get(req.params, "_id", null);
+  const productId = _.get(req.params, "id", null);
 
   let resultObj = null;
-
 
   try {
     const where = {
       accountId: id,
-      id:productId,
+      _id: productId,
       deletedAt: null,
       deletedBy: null,
     };
